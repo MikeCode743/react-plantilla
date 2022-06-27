@@ -1,5 +1,5 @@
 import React from "react";
-import {ThemeProvider } from "@mui/material/styles";
+import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -11,13 +11,16 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import { Icon } from "@mui/material";
 import DrawerContext from "../../context/drawer/DrawerContext";
-import { Drawer, AppBar } from "../../styles/drawer";
+import {
+  AppBar,
+  styleMain,
+  styleToolbar,
+} from "../../styles/drawer";
 import { DrawerListItems } from "./DrawerListItems";
-import { MenuDashboard } from '../dashboard/MenuDashboard';
 import { mdTheme } from "../../styles/themeApp";
+import { Rutas } from "./Routes";
 
-
-function DashboardContent() {
+export default function DashboardContent() {
   const [open, setOpen] = React.useState(false);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -57,14 +60,7 @@ function DashboardContent() {
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
-          <Toolbar
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "flex-end",
-              px: [1],
-            }}
-          >
+          <Toolbar sx={styleToolbar}>
             <IconButton onClick={toggleDrawer}>
               <Icon>chevron_left</Icon>
             </IconButton>
@@ -76,30 +72,15 @@ function DashboardContent() {
             </DrawerContext.Provider>
           </List>
         </Drawer>
-        <Box
-          component="main"
-          sx={{
-            backgroundColor: (theme) =>
-              theme.palette.mode === "light"
-                ? theme.palette.grey[100]
-                : theme.palette.grey[900],
-            flexGrow: 1,
-            height: "100vh",
-            overflow: "auto",
-          }}
-        >
+        <Box component="main" sx={styleMain}>
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container>
-              <MenuDashboard />
+              <Rutas />
             </Grid>
           </Container>
         </Box>
       </Box>
     </ThemeProvider>
   );
-}
-
-export default function Dashboard() {
-  return <DashboardContent />;
 }

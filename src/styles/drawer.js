@@ -6,7 +6,7 @@ import MuiAppBar from "@mui/material/AppBar";
 const drawerWidth = 200;
 const whiteSpace = "nowrap"
 
-const Drawer = styled(MuiDrawer, {
+const DrawerComponent = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
   "& .MuiDrawer-paper": {
@@ -53,4 +53,21 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
-export { Drawer, AppBar };
+const styleMain = {
+  backgroundColor: (theme) =>
+    theme.palette.mode === "light"
+      ? theme.palette.grey[100]
+      : theme.palette.grey[900],
+  flexGrow: 1,
+  height: "100vh",
+  overflow: "auto",
+};
+
+const styleToolbar = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "flex-end",
+  px: [1],
+};
+
+export { DrawerComponent, AppBar, styleMain, styleToolbar };
